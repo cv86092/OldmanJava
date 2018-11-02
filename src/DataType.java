@@ -16,6 +16,8 @@ public class DataType {
 		System.out.println(h);
 		double j =2.0E+6;
 		System.out.println(j);
+		double b = 2.01238;
+		System.out.println(b);
 	}
 
 }
