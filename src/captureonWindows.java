@@ -13,14 +13,13 @@ import com.google.common.io.*;
 public class captureonWindows {
 
 	public static void main(String[] args) throws IOException {
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\Michael\\AppData\\Roaming\\java\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.ltn.com.tw/");
-
         File scrFile = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
 		// Now you can do whatever you need to do with it, for example copy somewhere
-        FileUtils.copyFile(scrFile, new File("C:\\Users\\Michael\\Pictures\\20181119.png"));
+        FileUtils.copyFile(scrFile, new File("D:\\20181119.png"));
         driver.quit();
-        
 	}
 
 }
