@@ -25,19 +25,25 @@ public class captureonWindows {
 		opt.merge(dc);
 		FirefoxDriver driver =  new FirefoxDriver(opt);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		try{
-			driver.get("http://www.michaeljacksion.com/");
-	        File scrFile1 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-	        FileUtils.copyFile(scrFile1, new File("D:\\20181120-1.png"));
-	        driver.quit();
-		} catch (Exception e){
-			driver.close();
-			throw new RuntimeException("Failed to start firefox browser,please check!", e);
+		for (int i=0;i<2;i++){
+			try{
+				if(i == 0){
+					driver.get("http://www.michaeljacksion.com");
+				}else{
+					driver.get("http:/www.ltn.com.tw");
+				}
+		        File scrFile1 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
+		        String pngname = "D:\\test-"+i+".png";
+		        FileUtils.copyFile(scrFile1, new File(pngname));
+		        //driver.quit();
+			} catch (Exception e){
+				continue;
+				//driver.close();
+			    //e.printStackTrace();
+			    //throw new IllegalStateException(e);
+			}
 		}
-		
-		driver.get("http://www.ltn.com/");
-        File scrFile2 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File("D:\\20181120-1.png"));
+		driver.close();
 			
 
 		
