@@ -9,9 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.google.common.io.*;
 
+//guava-18 , selenium-2.45 , firefox 63 ,geckoDriver 23
 
 public class captureonWindows {
 
@@ -22,27 +24,24 @@ public class captureonWindows {
 		FirefoxOptions opt = new FirefoxOptions();
 		opt.merge(dc);
 		FirefoxDriver driver =  new FirefoxDriver(opt);
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-		driver.get("http://www.bot.com.tw/");
-        File scrFile1 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile1, new File("D:\\20181120-1.png"));
-		driver.get("http://www.ltn.com.tw/");
-        File scrFile2 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile2, new File("D:\\20181120-2.png"));
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		try{
+			driver.get("http://www.michaeljacksion.com/");
+	        File scrFile1 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
+	        FileUtils.copyFile(scrFile1, new File("D:\\20181120-1.png"));
+	        driver.quit();
+		} catch (Exception e){
+			driver.close();
+			throw new RuntimeException("Failed to start firefox browser,please check!", e);
+		}
 		
-		driver.get("http://www.michaeljacksion.com/");
-        File scrFile3 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile3, new File("D:\\20181120-3.png"));
-        
-		driver.get("http://www.cpbl.com.tw/");
-        File scrFile4 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile4, new File("D:\\20181120-4.png"));
-        
-		driver.get("http://www.wix.com/");
-        File scrFile5 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile5, new File("D:\\20181120-5.png"));
-        
-		driver.quit();
+		driver.get("http://www.ltn.com/");
+        File scrFile2 = ( (TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile2, new File("D:\\20181120-1.png"));
+			
+
+		
+		
 	}
 
 }
